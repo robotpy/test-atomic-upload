@@ -1,0 +1,23 @@
+---
+name: test
+
+on: [push]
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+    - name: mkdist
+      shell: bash
+      run: |
+        mkdir dist
+        dd if=/dev/random of=dist/largewheel.whl bs=1M count=50
+    - uses: robotpy/github-action-scp@atomic
+      with:
+        local: dist-roborio
+        remote: public_html/2021/roborio
+        host: narya.tortall.net
+        username: ${{ secrets.SSH_USER }}
+        privateKey: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        atomicPut: true
