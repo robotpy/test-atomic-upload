@@ -14,7 +14,7 @@ jobs:
         dd if=/dev/random of=dist/largewheel.whl bs=1M count=50
     - uses: robotpy/github-action-scp@atomic
       with:
-        local: dist-roborio
+        local: dist
         remote: public_html/2021/roborio
         host: narya.tortall.net
         username: ${{ secrets.SSH_USER }}
