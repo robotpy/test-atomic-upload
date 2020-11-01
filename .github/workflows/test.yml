@@ -11,7 +11,7 @@ jobs:
       shell: bash
       run: |
         mkdir dist
-        dd if=/dev/random of=dist/largewheel.whl bs=100000 iflag=fullblock count=500
+        dd if=/dev/random of=dist/largewheel.whl bs=100000 iflag=fullblock count=100
     - uses: robotpy/github-action-scp@atomic
       with:
         local: dist
